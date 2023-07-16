@@ -1,0 +1,51 @@
+﻿<Window x:Class="GroupAssignmentt1.VIEW_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GroupAssignmentt1"
+        xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="VIEW_Window" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <local:VIEW_vm/>
+    </Window.DataContext>
+    <Grid>
+        <Image Source="/Images/26807.jpg" Stretch="Fill" />
+        <StackPanel>
+            <TextBlock Text="SERVICES" Style="{StaticResource titleText}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="40 40 0 0" Text="Service Name"  Style="{StaticResource normalText}" />
+                <TextBlock Margin="40 40 0 0"  Text="Service Cost" Style="{StaticResource normalText}"/>
+            </StackPanel>
+           
+            
+            <ListView  x:Name="listview" Background="Transparent" ItemsSource="{Binding Services ,UpdateSourceTrigger=PropertyChanged}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0 0 0 0" Orientation="Horizontal">
+
+                            <TextBlock Text="{Binding ServiceName}" Style="{StaticResource normalText}"  Margin="70 40 0 0" FontSize="10" />
+                            <TextBlock Text="{Binding cost}" Style="{StaticResource normalText}"  Margin="120 40 0 0" FontSize="10" />
+                            <Button Margin="80 10 0 0"  Command="{Binding DataContext.EditServiceCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}"  Style="{StaticResource ListDelButton }">
+                                <icon:PackIconMaterial Kind="Pencil"/>
+                            </Button>
+                            <Button Margin="20 10 0 0"    Command="{Binding DataContext.DeleteServiceCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}" Style="{StaticResource ListDelButton }">
+                                <icon:PackIconMaterial Kind="TrashCan"/>
+                            </Button>
+                 
+                        
+
+
+
+
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </StackPanel>
+      
+
+
+    </Grid>
+</Window>
